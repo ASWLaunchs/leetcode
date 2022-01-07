@@ -29,8 +29,8 @@ func lengthOfLongestSubstring(s string) int {
 				}
 				fmt.Printf("从下标%d开始的切片为%s \n", index, strArr[index:j])
 				index = j
-			} else if v != strArr[j] && j == len(strArr)-1 {
-				fmt.Printf("从下标%d开始的切片为%s \n", index, strArr[0:j])
+			} else if res == 0 && j == len(strArr)-1 {
+				fmt.Printf("从下标%d开始的切片为%s \n", index, strArr[0:])
 			}
 		}
 	}
