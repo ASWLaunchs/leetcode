@@ -18,19 +18,20 @@ func lengthOfLongestSubstring(s string) int {
 	for i := 0; i < len(s); i++ {
 		strArr = append(strArr, string(s[i]))
 	}
-
 	//排序
 	for i, v := range strArr {
 		index = i
-		for j := index + 1; j < len(strArr); j++ {
-			if v == strArr[j] {
+		for j := index + 2; j < len(strArr); j++ {
+			if v == strArr[j] && strArr[j] != strArr[j-1] {
 				if len(strArr[index:j]) > res {
 					res = len(strArr[index:j])
 				}
-				fmt.Printf("从下标%d开始的切片为%s \n", index, strArr[index:j])
 				index = j
-			} else if res == 0 && j == len(strArr)-1 {
-				fmt.Printf("从下标%d开始的切片为%s \n", index, strArr[0:])
+			} else if v != strArr[j] && strArr[j] == strArr[j-1] {
+				if len(strArr[index:j-1]) > res {
+					res = len(strArr[index : j-1])
+					index = j
+				}
 			}
 		}
 	}
@@ -43,5 +44,7 @@ func main() {
 	s = " "
 	fmt.Println(lengthOfLongestSubstring(s))
 	s = "au"
+	fmt.Println(lengthOfLongestSubstring(s))
+	s = "pwwkew"
 	fmt.Println(lengthOfLongestSubstring(s))
 }
