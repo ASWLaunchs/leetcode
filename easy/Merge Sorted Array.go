@@ -1,23 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
-func merge(nums1 []int, m int, nums2 []int, n int) {
-	if m+n == len(nums1) {
-		for i := range nums2 {
-			nums1[m] = nums2[i]
-			m += 1
-		}
-	}
-	for i := range nums1 {
-		for j := i + 1; j < len(nums1); j++ {
-			if nums1[i] > nums1[j] {
-				temp := nums1[i]
-				nums1[i] = nums1[j]
-				nums1[j] = temp
-			}
-		}
-	}
+func merge(nums1 []int, m int, nums2 []int, _ int) {
+	copy(nums1[m:], nums2)
+	sort.Ints(nums1)
 	fmt.Println(nums1)
 }
 
@@ -26,6 +16,5 @@ func main() {
 	nums2 := []int{2, 5, 6}
 	m := 3
 	n := 3
-
 	merge(nums1, m, nums2, n)
 }
